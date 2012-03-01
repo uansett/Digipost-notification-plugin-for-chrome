@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="login.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+        <title>Login</title>
+		<script>
+			$(document).ready(function(){
+				chrome.extension.sendRequest({func: "auth"}, function(response) {
+					var auth = response.auth;
+				if(auth){
+					document.getElementById("list").innerHTML = response.list;
+					$('#formm').hide();
+					$('#list').show();
+				}else{
+					$('#formm').show();
+					$('#list').hide();	
+				}
+				});
+				
+		});
+		function login(f, p)
+		{
+			//var auth = new Boolean();
+			/*
+			* Sender melding til bakgrunnsprosessen og ber om å kjøre login, skrive resultat til popup-vinduet.
+			*/
+			chrome.extension.sendRequest({func: "login", fnr: f,pass: p}, function(response) {
+				//auth = response.auth;
+			  	document.getElementById("error").innerHTML = response.res;
+			});
+			window.location.reload();
+			/*$(document).ready(function(){
+			if(!window.auth){
+				document.getElementById("error").innerHTML = "loggaInn";
+				$('#formm').hide();
+				$('#info').show();
+			}else{
+				$('#formm').show();
+				$('#info').hide();	
+			}
+		});*/
+		}
+		</script>
+    </head>
+    <body>
+		<div id="formm">
+			<img src="logo.png">
+		<label for="foedselsnummer">Fødselsnummer</label>
+        <input type="password" length="30" id="foedselsnummer"/>
+		<label for="passord">Passord</label>
+        <input type="password" length="30" id="passord" />
+        <p>
+			<input type="button" onClick='login(document.getElementById("foedselsnummer").value, document.getElementById("passord").value)' value="Logg inn"/>
+			
+		</p>
+        </div>
+		<div id="error"></div>
+		<div id="list" ></div>
+
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+        <title>Notification</title>
+
+    </head>
+    <body>
+        <a href="#" onClick="window.webkitNotifications.requestPermission();return true">Hallo, Hallo</a>
+        <button id="show_button"> SHOW </button>
+        <script type="text/javascript" charset="utf-8">
+
+
+            document.querySelector('#show_button').addEventListener('click', function(){
+             
+                if(window.webkitNotifications){
+                    console.log("notif. støttes");
+                    if(window.webkitNotifications.checkPermission() == 0){
+                        console.log("checkpermission returnerer 0");
+                        var notification = window.webkitNotifications.createNotification('icon.png','Dette er en notifikasjon','Hu hei hvor det går');
+                        notification.show();
+
+                    }else{
+                        console.log("checkpermissions != 0");
+                    }
+                }else{
+                    console.log("Nitifikasjoner ikke støttet.");
+                }
+
+            }, false);
+        </script>
+    </body>
+</html>
