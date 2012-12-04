@@ -1,8 +1,9 @@
 {
   	"name": "Digipost",
   	"version": "0.3",
+	"manifest_version": 2,
   	"description": "Digipost notification application.",
-	"background_page":"background.html",
+	"background":"background.html",
 	"icons": {
 		"128":"icon_128.png",
 		"71":"icon_auth.png",
@@ -14,6 +15,7 @@
 		"default_title": "Log in",
 		"default_popup": "login.html"
   	},
+"content_security_policy": "script-src 'self' 'unsafe-eval' https://ajax.googleapis.com https://www.digipost.no; object-src 'self'",
   	"permissions":
 	[
 		"https://www.digipost.no/*",
