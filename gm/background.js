@@ -31,7 +31,7 @@
 		{
 				$.ajax({
 			    	type: "GET",
-			    	url: "https://www.digipost.no/post/privat/konto/",
+			    	url: "https://www.digipost.no/post/api/private",
 					async: false,
 			    	success: function(result) {
 						//@@TODO var result = JSON.parse(JSON.stringify(res).replace(/\"/g, "\'"));
